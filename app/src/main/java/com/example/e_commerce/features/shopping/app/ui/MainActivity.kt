@@ -12,13 +12,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.lifecycleScope
 import com.example.e_commerce.features.shopping.app.viewmodel.ProductsViewModel
+import com.example.e_commerce.features.shopping.data.local.ProductDatabase
+import com.example.e_commerce.features.shopping.domain.entity.ProductEntity
 import com.example.e_commerce.ui.theme.E_CommerceTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val viewModel by viewModels<ProductsViewModel>()
+    @Inject
+    lateinit var database: ProductDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -33,6 +41,9 @@ class MainActivity : ComponentActivity() {
             }
         }
         viewModel.getProducts()
+        /*lifecycleScope.launch(Dispatchers.IO) {
+            //database.dao().insertProduct(ProductEntity("cate","Des",12,"image",1.5,"title"))
+        }*/
     }
 }
 

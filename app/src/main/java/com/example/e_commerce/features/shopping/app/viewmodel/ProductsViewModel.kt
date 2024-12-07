@@ -13,7 +13,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-private const val TAG = "ProductsViewModel"
+private const val TAG = "Handler"
 
 @HiltViewModel
 class ProductsViewModel @Inject constructor(private val getProductsUseCase: GetAllProducts) :
